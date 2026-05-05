@@ -14,8 +14,8 @@ export interface DistrictContent {
 
 export const DISTRICT_DATA: Record<string, DistrictContent> = {
   "Hunza": {
-    "description": "A jewel of the Karakoram, famous for its emerald lakes, ancient forts, and the legendary hospitality of the Burusho people. Home to the iconic Passu Cones and the turquoise Attabad Lake.",
-    "image": "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=1200&q=80",
+    "description": "A jewel of the Karakoram, famous for its emerald lakes, ancient forts, and the legendary hospitality of the Burusho people.",
+    "image": "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=1200&q=80",
     "stats": {
       "guides": 42,
       "expeditions": 15,
@@ -173,7 +173,7 @@ export const DISTRICT_DATA: Record<string, DistrictContent> = {
     ]
   },
   "Chitral (Upper & Lower)": {
-    "description": "A land of ancient legends and the unique Kalash culture. Nestled under the mighty Tirich Mir, it offers a blend of adventure and deep history.",
+    "description": "Land of legends and the unique Kalash culture. Nestled under the mighty Tirich Mir, it offers a blend of raw adventure and deep history.",
     "image": "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=1200&q=80",
     "stats": {
       "guides": 26,
@@ -199,8 +199,8 @@ export const DISTRICT_DATA: Record<string, DistrictContent> = {
     ]
   },
   "Diamer (Chilas)": {
-    "description": "Crucial junction on the Silk Road, known for its ancient rock petroglyphs and the magical meadows at the foot of Nanga Parbat.",
-    "image": "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=1200&q=80",
+    "description": "Known for its ancient rock petroglyphs and the magical meadows at the foot of Nanga Parbat. The gateway to the legendary Fairy Meadows.",
+    "image": "https://images.unsplash.com/photo-1587570441551-789069d2d2a4?auto=format&fit=crop&w=1200&q=80",
     "stats": {
       "guides": 20,
       "expeditions": 12,

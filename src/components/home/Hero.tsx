@@ -61,9 +61,9 @@ export const Hero: React.FC<HeroProps> = ({
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-sky-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md text-emerald-400 text-[10px] font-black uppercase tracking-[0.2em] mb-8">
               <Sparkles size={12} className="animate-spin-slow" />
-              Premier International Gateway
+              Direct from GB & Chitral
             </div>
             
             <h1 className="text-5xl md:text-8xl font-light text-white leading-[0.95] tracking-tight mb-8 font-display">
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({
                     animate={{ y: 0, opacity: 1 }}
                     exit={{ y: "-100%", opacity: 1 }}
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                    className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-white to-emerald-400 font-black whitespace-nowrap"
+                    className="absolute inset-0 text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-white to-sky-400 font-black whitespace-nowrap"
                   >
                     {mountains[mountainIndex]}
                   </motion.span>
@@ -89,7 +89,7 @@ export const Hero: React.FC<HeroProps> = ({
             </h1>
 
             <p className="text-xl text-slate-400 font-medium leading-relaxed mb-10 max-w-xl">
-              Not expeditions. Not agencies. Real people from GB and Chitral showing you their world—raw, local, and unpackaged.
+              Connect with verified students and expert locals in Northern Pakistan. No agencies, just real people showing you their home.
             </p>
 
             <div className="flex flex-wrap gap-3 mb-12">
@@ -157,8 +157,8 @@ export const Hero: React.FC<HeroProps> = ({
             {/* Visual content for hero right side */}
             <div className="relative aspect-[4/5] rounded-[60px] overflow-hidden shadow-2xl border-8 border-white/10 group">
               <img 
-                src="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1200" 
-                alt="Guide in action" 
+                src="https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=1200" 
+                alt="Local Guide in Hunza" 
                 className="w-full h-full object-cover transition-transform duration-[2s] group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent opacity-80" />
@@ -169,15 +169,15 @@ export const Hero: React.FC<HeroProps> = ({
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
                 className="absolute bottom-10 left-10 p-6 bg-white/90 backdrop-blur-md rounded-3xl border border-white/20 shadow-2xl max-w-sm"
               >
-                <div className="flex gap-1 text-amber-500 mb-3">
+                <div className="flex gap-1 text-emerald-500 mb-3">
                   {[...Array(5)].map((_, i) => <Sparkles key={i} size={16} className="fill-current" />)}
                 </div>
-                <p className="text-slate-800 font-bold mb-4 italic">"Ali was the best guide I've ever had. He took us to places in Skardu that weren't even on the map!"</p>
+                <p className="text-slate-800 font-bold mb-4 italic">"Ali was an incredible host. He didn't just show us Karimabad; he introduced us to his family and the secret spots only locals know."</p>
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-sky-100 flex items-center justify-center text-sky-600 font-black">S</div>
+                  <div className="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 font-black">R</div>
                   <div>
-                    <div className="text-slate-900 font-black text-sm uppercase tracking-tighter">David Thorne</div>
-                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Expeditionist from USA</div>
+                    <div className="text-slate-900 font-black text-sm uppercase tracking-tighter">Robert Chen</div>
+                    <div className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em]">Traveler from Vancouver</div>
                   </div>
                 </div>
               </motion.div>

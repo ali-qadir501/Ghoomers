@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
-import { Search, MapPin, Calendar, Users, Star, ArrowRight, Zap, ShieldCheck, Heart, Mountain, Compass, Camera, Music, Utensils, Tent } from 'lucide-react';
+import { Search, MapPin, Calendar, Users, Star, ArrowRight, Zap, ShieldCheck, Heart, Mountain, Compass, Camera, Music, Utensils, Tent, Building2 } from 'lucide-react';
 import { AnimatedCounter } from '../components/common/AnimatedCounter';
 import { ParallaxSection } from '../components/common/ParallaxSection';
 import { GuideCard } from '../components/common/GuideCard';
@@ -9,7 +9,23 @@ import { LOCAL_EXPERIENCES, getFeaturedExperiences } from '../data/experiences';
 import { ExperienceCard } from '../components/common/ExperienceCard';
 import { useCurrency } from '../context/CurrencyContext';
 
-export const HomePage: React.FC = () => {
+interface HomePageProps {
+  onSearch: (query: string) => void;
+  onExploreClick: () => void;
+  onExperiencesClick: () => void;
+  onFindGuidesClick: () => void;
+  onBecomeGuide: () => void;
+  onConciergeClick?: () => void;
+}
+
+export const HomePage: React.FC<HomePageProps> = ({
+  onSearch,
+  onExploreClick,
+  onExperiencesClick,
+  onFindGuidesClick,
+  onBecomeGuide,
+  onConciergeClick
+}) => {
   const { formatPrice } = useCurrency();
   const { scrollY } = useScroll();
   const y1 = useTransform(scrollY, [0, 500], [0, 200]);
@@ -65,14 +81,14 @@ export const HomePage: React.FC = () => {
             style={{ opacity }}
           >
             <span className="inline-block px-4 py-1.5 rounded-full bg-emerald-500/20 backdrop-blur-md border border-emerald-500/30 text-emerald-400 text-xs font-black uppercase tracking-widest mb-8">
-              Pakistan's Premier Adventure Platform
+              North Pakistan's Premier Adventure Platform
             </span>
             <h1 className="text-6xl md:text-8xl lg:text-9xl font-black text-white font-display mb-8 leading-[0.85] tracking-tighter drop-shadow-2xl">
-              EXPLORE THE<br />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-emerald-400 to-amber-400">UNEXPLORED</span>
+              NORTHERN<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-sky-400 via-emerald-400 to-amber-400">PAKISTAN</span>
             </h1>
             <p className="text-white/80 text-lg md:text-2xl font-medium max-w-3xl mx-auto mb-12 leading-relaxed">
-              Connect with verified local experts and experience the raw, untouched beauty of the Karakoram and Himalayas.
+              Connect with verified experts in Hunza, Skardu, Gilgit & beyond. Experience the raw, untouched beauty of the Karakoram.
             </p>
 
             {/* Search Box */}
@@ -111,7 +127,10 @@ export const HomePage: React.FC = () => {
                     <p className="text-white font-bold text-sm">1 Guest</p>
                   </div>
                 </div>
-                <button className="bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2 group">
+                <button 
+                  onClick={() => onSearch(searchQuery.location)}
+                  className="bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-sm uppercase tracking-widest transition-all shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2 group"
+                >
                   <Search size={20} className="group-hover:scale-110 transition-transform" />
                   Search Guides
                 </button>
@@ -136,10 +155,10 @@ export const HomePage: React.FC = () => {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
             {[
-              { label: 'Verified Guides', value: 450, suffix: '+', icon: <ShieldCheck /> },
-              { label: 'Happy Travelers', value: 12, suffix: 'K+', icon: <Heart /> },
-              { label: 'Adventures', value: 85, suffix: '+', icon: <Compass /> },
-              { label: 'Avg Rating', value: 4.9, suffix: '/5', icon: <Star /> },
+              { label: 'Verified Partners', value: 450, suffix: '+', icon: <ShieldCheck /> },
+              { label: 'Global Travelers', value: 12, suffix: 'K+', icon: <Heart /> },
+              { label: 'Gilgit-Baltistan', value: 85, suffix: '%', icon: <Compass /> },
+              { label: 'Member Agencies', value: 40, suffix: '+', icon: <Building2 /> },
             ].map((stat, i) => (
               <div key={i} className="text-center group">
                 <div className="w-16 h-16 bg-slate-50 dark:bg-slate-900 rounded-2xl flex items-center justify-center text-sky-500 mx-auto mb-6 group-hover:bg-sky-500 group-hover:text-white transition-all duration-500 shadow-xl shadow-black/5">
@@ -169,7 +188,10 @@ export const HomePage: React.FC = () => {
                 Connect with professionals who offer 100% private and customizable experiences tailored to your dreams.
               </p>
             </div>
-            <button className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2 group">
+            <button 
+              onClick={onFindGuidesClick}
+              className="px-8 py-4 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-2xl font-bold text-slate-900 dark:text-white hover:bg-slate-50 dark:hover:bg-slate-700 transition-all flex items-center gap-2 group"
+            >
               View All Guides
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -197,7 +219,10 @@ export const HomePage: React.FC = () => {
                 Book unique micro-activities hosted by local students. From cooking traditional meals to hidden photography spots.
               </p>
             </div>
-            <button className="px-8 py-4 bg-slate-100 dark:bg-slate-800 rounded-2xl font-bold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex items-center gap-2 group">
+            <button 
+              onClick={onExperiencesClick}
+              className="px-8 py-4 bg-slate-100 dark:bg-slate-800 rounded-2xl font-bold text-slate-900 dark:text-white hover:bg-slate-200 dark:hover:bg-slate-700 transition-all flex items-center gap-2 group"
+            >
               Explore All Experiences
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
             </button>
@@ -258,7 +283,10 @@ export const HomePage: React.FC = () => {
                 ))}
               </div>
 
-              <button className="px-10 py-5 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-lg shadow-2xl shadow-sky-500/40 transition-all flex items-center gap-3 group">
+              <button 
+                onClick={onConciergeClick}
+                className="px-10 py-5 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-lg shadow-2xl shadow-sky-500/40 transition-all flex items-center gap-3 group"
+              >
                 Get Your Free Plan
                 <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </button>
@@ -371,11 +399,17 @@ export const HomePage: React.FC = () => {
               Join thousands of travelers who have explored the hidden gems of Pakistan with GHOOMERS.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
-              <button className="px-10 py-5 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-lg shadow-2xl shadow-sky-500/40 transition-all flex items-center gap-3 group">
+              <button 
+                onClick={onFindGuidesClick}
+                className="px-10 py-5 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-black text-lg shadow-2xl shadow-sky-500/40 transition-all flex items-center gap-3 group"
+              >
                 Find a Guide Now
                 <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </button>
-              <button className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white rounded-2xl font-black text-lg transition-all">
+              <button 
+                onClick={onBecomeGuide}
+                className="px-10 py-5 bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white rounded-2xl font-black text-lg transition-all"
+              >
                 Become a Guide
               </button>
             </div>

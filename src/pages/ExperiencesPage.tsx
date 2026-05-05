@@ -20,13 +20,13 @@ export const ExperiencesPage: React.FC<{ onSelect: (experience: LocalExperience)
     <div className="pt-32 pb-24 bg-white dark:bg-slate-950 min-h-screen">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="text-emerald-600 font-black text-xs uppercase tracking-[0.3em] mb-4 block">Tour Marketplace</span>
+          <span className="text-emerald-600 font-black text-xs uppercase tracking-[0.3em] mb-4 block">Personal Experiences</span>
           <h1 className="text-5xl md:text-8xl font-black text-slate-900 dark:text-white mb-6 tracking-tighter leading-[0.8]">
-            MOUNTAIN<br />
-            <span className="text-emerald-500">TOURS</span>
+            TRUSTED<br />
+            <span className="text-emerald-500">LOCALS</span>
           </h1>
           <p className="text-slate-500 dark:text-slate-400 text-xl font-medium leading-relaxed">
-            Every tour on GHOOMERS is 100% private and customizable. Connect with a local expert to craft your high-altitude itinerary.
+            Discover authentic experiences hosted directly by people who call the mountains home. No middlemen, just real connections.
           </p>
         </div>
 

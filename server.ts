@@ -245,10 +245,10 @@ try {
 const bikesCount = db.prepare("SELECT COUNT(*) as count FROM bikes").get() as any;
 if (bikesCount.count === 0) {
   const seedBikes = [
-    { name: "Honda CD 70", type: "70cc", price: 1500, shop: "Karakoram Rentals", loc: "Gilgit", img: "https://picsum.photos/seed/bike1/400/300" },
-    { name: "Yamaha YBR 125G", type: "125cc", price: 2500, shop: "Highland Motors", loc: "Skardu", img: "https://picsum.photos/seed/bike2/400/300" },
-    { name: "Suzuki GS 150", type: "125cc", price: 3000, shop: "Adventure Wheels", loc: "Hunza", img: "https://picsum.photos/seed/bike3/400/300" },
-    { name: "Kawasaki KLX 250", type: "Off-road", price: 8000, shop: "Dirt Riders", loc: "Gilgit", img: "https://picsum.photos/seed/bike4/400/300" }
+    { name: "Suzuki GS 150 (Adventure Prep)", type: "150cc", price: 3000, shop: "Karakoram Moto", loc: "Gilgit", img: "https://images.unsplash.com/photo-1627896157734-4d7d4388f24b?auto=format&fit=crop&q=80&w=800" },
+    { name: "Yamaha YBR 125G", type: "125cc", price: 2500, shop: "Highland Riders", loc: "Skardu", img: "https://images.unsplash.com/photo-1558981285-6f0c94958bb6?auto=format&fit=crop&q=80&w=800" },
+    { name: "Honda CB 150F", type: "150cc", price: 3500, shop: "Adventure Hub", loc: "Hunza", img: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=800" },
+    { name: "Kawasaki KLX 250", type: "Off-road", price: 8000, shop: "Indus Dirt", loc: "Gilgit", img: "https://images.unsplash.com/photo-1558981806-ec527fa84c39?auto=format&fit=crop&q=80&w=800" }
   ];
   const stmt = db.prepare("INSERT INTO bikes (name, type, price_per_day, shop_name, location, image) VALUES (?, ?, ?, ?, ?, ?)");
   seedBikes.forEach(b => stmt.run(b.name, b.type, b.price, b.shop, b.loc, b.img));
@@ -279,7 +279,7 @@ if (routesCount.count === 0) {
       waypoints: JSON.stringify(["Rakaposhi View Point", "Nomal"]),
       fuel: JSON.stringify(["Gilgit PSO", "Aliabad Shell"]),
       stays: JSON.stringify(["Serena Gilgit", "Eagle's Nest"]),
-      img: "https://picsum.photos/seed/route1/800/400"
+      img: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=1200"
     },
     { 
       name: "Deosai Plains Crossing", 
@@ -292,7 +292,7 @@ if (routesCount.count === 0) {
       waypoints: JSON.stringify(["Sheosar Lake", "Bara Pani"]),
       fuel: JSON.stringify(["Skardu City"]),
       stays: JSON.stringify(["Deosai Campsite"]),
-      img: "https://picsum.photos/seed/route2/800/400"
+      img: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1200"
     }
   ];
   const stmt = db.prepare("INSERT INTO routes (name, description, difficulty, distance, duration, start_point, end_point, waypoints, fuel_stops, accommodations, image) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -302,9 +302,9 @@ if (routesCount.count === 0) {
 const gearCount = db.prepare("SELECT COUNT(*) as count FROM gear").get() as any;
 if (gearCount.count === 0) {
   const seedGear = [
-    { name: "Full Face Helmet", type: "Helmet", price: 500, img: "https://picsum.photos/seed/gear1/400/300" },
-    { name: "Riding Jacket", type: "Jacket", price: 800, img: "https://picsum.photos/seed/gear2/400/300" },
-    { name: "Knee Guards", type: "Protection", price: 300, img: "https://picsum.photos/seed/gear3/400/300" }
+    { name: "Full Face Helmet", type: "Helmet", price: 500, img: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=600" },
+    { name: "Riding Jacket", type: "Jacket", price: 800, img: "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=600" },
+    { name: "Knee Guards", type: "Protection", price: 300, img: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=600" }
   ];
   const stmt = db.prepare("INSERT INTO gear (name, type, price_per_day, image) VALUES (?, ?, ?, ?)");
   seedGear.forEach(g => stmt.run(g.name, g.type, g.price, g.img));
@@ -321,7 +321,7 @@ if (microTreksCount.count === 0) {
       elev: "50m", 
       price: 4500, 
       village: "Altit", 
-      img: "https://picsum.photos/seed/trek1/400/300",
+      img: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&q=80&w=600",
       map: JSON.stringify({ points: [[36.314, 74.671], [36.315, 74.672], [36.316, 74.673]] }),
       addon: 1500
     },
@@ -333,7 +333,7 @@ if (microTreksCount.count === 0) {
       elev: "400m", 
       price: 6500, 
       village: "Gulmit", 
-      img: "https://picsum.photos/seed/trek2/400/300",
+      img: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=600",
       map: JSON.stringify({ points: [[36.414, 74.871], [36.415, 74.872], [36.416, 74.873]] }),
       addon: 2000
     },
@@ -345,7 +345,7 @@ if (microTreksCount.count === 0) {
       elev: "30m", 
       price: 5000, 
       village: "Passu", 
-      img: "https://picsum.photos/seed/trek3/400/300",
+      img: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&q=80&w=600",
       map: JSON.stringify({ points: [[36.474, 74.891], [36.475, 74.892], [36.476, 74.893]] }),
       addon: 1200
     }

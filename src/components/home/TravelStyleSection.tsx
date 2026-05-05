@@ -9,14 +9,14 @@ interface TravelStyleSectionProps {
 
 export const TravelStyleSection: React.FC<TravelStyleSectionProps> = ({ onStyleClick }) => {
   const styles = [
-    { title: "Sightseeing", icon: <MapPin />, image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80", count: 24, color: "from-sky-500" },
-    { title: "Hiking & Trekking", icon: <Mountain />, image: "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=600&q=80", count: 18, color: "from-emerald-500" },
-    { title: "Culture & Festivals", icon: <Users />, image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=600&q=80", count: 12, color: "from-indigo-500" },
-    { title: "Honeymoon", icon: <Heart />, image: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=600&q=80", count: 8, color: "from-rose-500" },
-    { title: "Active Adventures", icon: <Bolt />, image: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=600&q=80", count: 15, color: "from-amber-500" },
+    { title: "Sightseeing", icon: <MapPin />, image: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&w=600&q=80", count: 24, color: "from-sky-500" },
+    { title: "Hiking & Trekking", icon: <Mountain />, image: "https://images.unsplash.com/photo-1587570441551-789069d2d2a4?auto=format&fit=crop&w=600&q=80", count: 18, color: "from-emerald-500" },
+    { title: "Cultural Immersion", icon: <Users />, image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=600&q=80", count: 12, color: "from-indigo-500" },
+    { title: "Honey-Trek", icon: <Heart />, image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&w=600&q=80", count: 8, color: "from-rose-500" },
+    { title: "Moto Expeditions", icon: <Bike />, image: "https://images.unsplash.com/photo-1627896157734-4d7d4388f24b?auto=format&fit=crop&w=600&q=80", count: 15, color: "from-amber-500" },
     { title: "Photography", icon: <Camera />, image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=600&q=80", count: 10, color: "from-sky-600" },
-    { title: "Cycling", icon: <Bike />, image: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80", count: 6, color: "from-emerald-600" },
-    { title: "Pilgrimage", icon: <Compass />, image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=600&q=80", count: 5, color: "from-slate-600" },
+    { title: "Village Stays", icon: <Compass />, image: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=600&q=80", count: 6, color: "from-emerald-600" },
+    { title: "Heritage", icon: <Mountain />, image: "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=600&q=80", count: 5, color: "from-slate-600" },
   ];
 
   return (

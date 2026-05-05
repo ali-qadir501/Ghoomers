@@ -74,8 +74,8 @@ export const MotoTrekHomeSection: React.FC<MotoTrekHomeSectionProps> = ({ onExpl
           >
             <div className="relative rounded-[60px] overflow-hidden aspect-[4/5] shadow-2xl border border-white/10 transform-style-3d group">
               <img 
-                src="https://images.unsplash.com/photo-1558981403-c5f9899a28bc?auto=format&fit=crop&q=80&w=1200" 
-                alt="Motorcycle Adventure" 
+                src="https://images.unsplash.com/photo-1627896157734-4d7d4388f24b?auto=format&fit=crop&q=80&w=1200" 
+                alt="Motorcycle Adventure on KKH" 
                 className="w-full h-full object-cover transition-transform duration-[3s] group-hover:scale-110"
                 referrerPolicy="no-referrer"
               />

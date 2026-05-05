@@ -89,6 +89,7 @@ export interface Destination {
   groupSize: 'Solo' | 'Small Group' | 'Large Group';
   duration?: string;
   popularity: number;
+  rating: number;
   coordinates?: { lat: number; lng: number };
   gallery?: string[];
   popularActivities?: string[];
@@ -218,8 +219,8 @@ export const DESTINATIONS: Destination[] = [
   {
     id: 'k2',
     name: "K2 Base Camp",
-    description: "World's most challenging trek",
-    image: "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=600&q=80",
+    description: "The Throne Room of the Mountain Gods",
+    image: "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1200",
     guideCount: 32,
     region: 'Gilgit-Baltistan',
     activityType: 'Mountaineering',
@@ -228,20 +229,21 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 98,
+    rating: 4.9,
     coordinates: { lat: 35.8818, lng: 76.5133 },
     gallery: [
-      "https://images.unsplash.com/photo-1551632811-561732d1e306?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
     ],
-    popularActivities: ["High Altitude Trekking", "Glacier Crossing", "Ice Climbing"],
-    highlights: ["Concordia - Throne Room of Mountain Gods", "Baltoro Glacier", "Views of 4 eight-thousanders"]
+    popularActivities: ["Baltoro Glacier Trek", "Concordia Camping", "Gondogoro La Crossing"],
+    highlights: ["Concordia - View of 4 8,000m peaks", "Baltoro Glacier", "Extreme high altitude exposure"]
   },
   {
     id: 'hunza',
     name: "Hunza Valley",
-    description: "Cultural gem of the north",
-    image: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=600&q=80",
+    description: "Ancient heritage under Rakaposhi",
+    image: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=1200",
     guideCount: 45,
     region: 'Gilgit-Baltistan',
     activityType: 'Cultural',
@@ -250,20 +252,21 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Spring',
     groupSize: 'Large Group',
     popularity: 95,
+    rating: 4.8,
     coordinates: { lat: 36.3167, lng: 74.6500 },
     gallery: [
-      "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=1200",
       "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=800&q=80",
       "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80"
     ],
-    popularActivities: ["Altit & Baltit Fort Tours", "Attabad Lake Boating", "Apricot Blossom Viewing"],
-    highlights: ["Ancient Silk Road History", "Stunning Autumn Colors", "Local Organic Cuisine"]
+    popularActivities: ["Karimabad Heritage Walk", "Passu Cones Photography", "Attabad Lake Boating"],
+    highlights: ["1000-year-old Altit & Baltit Forts", "Passu Cones sunrise", "World-famous hospitality"]
   },
   {
     id: 'fairy',
     name: "Fairy Meadows",
-    description: "Camp under Nanga Parbat",
-    image: "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=600&q=80",
+    description: "Nanga Parbat's legendary viewpoint",
+    image: "https://images.unsplash.com/photo-1587570441551-789069d2d2a4?auto=format&fit=crop&q=80&w=1200",
     guideCount: 28,
     region: 'Gilgit-Baltistan',
     activityType: 'Trekking',
@@ -272,14 +275,15 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 92,
+    rating: 4.7,
     coordinates: { lat: 35.3833, lng: 74.5833 },
     gallery: [
-      "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
-      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80"
+      "https://images.unsplash.com/photo-1587570441551-789069d2d2a4?auto=format&fit=crop&q=80&w=1200",
+      "https://images.unsplash.com/photo-1501555088652-021faa106b9b?auto=format&fit=crop&w=800&q=80",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80"
     ],
-    popularActivities: ["Camping", "Horse Riding", "Base Camp Hike"],
-    highlights: ["Nanga Parbat Face View", "Pine Forest Trails", "Starry Night Skies"]
+    popularActivities: ["Nanga Parbat Base Camp Hike", "Jeep Trek from Raikot Bridge", "Overnight Camping"],
+    highlights: ["Face of Nanga Parbat (8,126m)", "Dense pine forests", "Breathtaking night skies"]
   },
   {
     id: 'skardu',
@@ -294,6 +298,7 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Solo',
     popularity: 89,
+    rating: 4.6,
     coordinates: { lat: 35.2981, lng: 75.6333 },
     gallery: [
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
@@ -316,6 +321,7 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 85,
+    rating: 4.5,
     coordinates: { lat: 36.1833, lng: 73.4500 },
     gallery: [
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
@@ -338,6 +344,7 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Small Group',
     popularity: 87,
+    rating: 4.8,
     coordinates: { lat: 35.1444, lng: 76.3333 },
     gallery: [
       "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=800&q=80",
@@ -360,6 +367,7 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 82,
+    rating: 4.9,
     coordinates: { lat: 36.0833, lng: 72.5167 },
     gallery: [
       "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80",
@@ -382,6 +390,7 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Small Group',
     popularity: 94,
+    rating: 4.9,
     coordinates: { lat: 35.6833, lng: 71.7167 },
     gallery: [
       "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=800&q=80",
@@ -400,7 +409,7 @@ export const CARS: Car[] = [
     type: 'Sedan',
     pricePerDay: 50,
     image: 'https://images.unsplash.com/photo-1621007947382-bb3c3994e3fb?auto=format&fit=crop&w=600&q=80',
-    features: ['AC', 'Bluetooth', 'Spacious Trunk'],
+    features: ['AC', 'Native Driver', 'Northern Route Ready'],
     capacity: 4
   },
   {
@@ -409,7 +418,7 @@ export const CARS: Car[] = [
     type: 'SUV',
     pricePerDay: 120,
     image: 'https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?auto=format&fit=crop&w=600&q=80',
-    features: ['4x4', 'Off-road capable', 'Luxury Interior'],
+    features: ['4x4', 'Rugged Terrain Capability', 'Luxury Seating'],
     capacity: 7
   },
   {
@@ -418,7 +427,7 @@ export const CARS: Car[] = [
     type: 'Van',
     pricePerDay: 80,
     image: 'https://images.unsplash.com/photo-1532939163844-547f958e91b4?auto=format&fit=crop&w=600&q=80',
-    features: ['High Roof', 'AC', 'Ideal for Groups'],
+    features: ['Group Seating', 'AC', 'Karimabad Standard'],
     capacity: 12
   },
   {
@@ -427,7 +436,7 @@ export const CARS: Car[] = [
     type: 'Pickup',
     pricePerDay: 100,
     image: 'https://images.unsplash.com/photo-1583121274602-3e2820bc6988?auto=format&fit=crop&w=600&q=80',
-    features: ['4x4', 'Rugged', 'Adventure Ready'],
+    features: ['4x4', 'Adventure Ready', 'High Ground Clearance'],
     capacity: 5
   }
 ];

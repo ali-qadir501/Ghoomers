@@ -10,43 +10,32 @@ import { ExperiencesPage } from './pages/ExperiencesPage';
 import { ExperienceDetailPage } from './pages/ExperienceDetailPage';
 import { FindGuidesPage } from './pages/FindGuidesPage';
 import { GuideDetailPage } from './pages/GuideDetailPage';
+import { DestinationsPage } from './pages/DestinationsPage';
+import { HomePage } from './pages/HomePage';
+import { BlogPage } from './pages/BlogPage';
+import { ContactPage } from './pages/ContactPage';
+import { WaterAdventuresPage } from './pages/WaterAdventuresPage';
+import { ShoreExcursionsPage } from './pages/ShoreExcursionsPage';
+import { AboutPage } from './pages/AboutPage';
+import { HowItWorksPage } from './pages/HowItWorksPage';
+import { LegalPage } from './pages/LegalPage';
+import { HelpCenterPage } from './pages/HelpCenterPage';
+import { AgencySignupPage } from './pages/AgencySignupPage';
 import ExplorePage from './pages/ExplorePage';
-import { LOCAL_EXPERIENCES, getFeaturedExperiences, LocalExperience } from './data/experiences';
+import { LocalExperience, getFeaturedExperiences, LocalExperience as LocalExperienceType } from './data/experiences';
 import { DISTRICT_DATA } from './data/districtData';
 import { ExperienceCard } from './components/common/ExperienceCard';
-import { SeasonalInspiration } from './components/home/SeasonalInspiration';
-import { AdventureVisualizer } from './components/home/AdventureVisualizer';
-import { ShandurVisualizer } from './components/home/ShandurVisualizer';
-import { PoloVisualizer } from './components/home/PoloVisualizer';
-import { HarvestVisualizer } from './components/home/HarvestVisualizer';
-import { CulinaryVisualizer } from './components/home/CulinaryVisualizer';
-import { BorithVisualizer } from './components/home/BorithVisualizer';
-import { DeosaiVisualizer } from './components/home/DeosaiVisualizer';
-import { HussainiVisualizer } from './components/home/HussainiVisualizer';
-import { PetroglyphVisualizer } from './components/home/PetroglyphVisualizer';
-import { AstrophotographyVisualizer } from './components/home/AstrophotographyVisualizer';
-import { StarTrailsVisualizer } from './components/home/StarTrailsVisualizer';
-import { K2BaseCampVisualizer } from './components/home/K2BaseCampVisualizer';
-import { HunzaBlossomVisualizer } from './components/home/HunzaBlossomVisualizer';
-import { PassuConesVisualizer } from './components/home/PassuConesVisualizer';
 import { TestimonialCarousel } from './components/home/TestimonialCarousel';
 import { BookingCalendar } from './components/common/BookingCalendar';
 import { Logo } from './components/common/Logo';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Hero } from './components/home/Hero';
-import { TrustSection } from './components/home/TrustSection';
-import { MarketplaceBadges } from './components/home/MarketplaceBadges';
-import { HowItWorks } from './components/home/HowItWorks';
 import { ExploreDistrictSection } from './components/home/ExploreDistrictSection';
 import { TravelStyleSection } from './components/home/TravelStyleSection';
 import { MeetOurGuides } from './components/home/MeetOurGuides';
 import { MotoTrekHomeSection } from './components/home/MotoTrekHomeSection';
-import { MicroTrekHomeSection } from './components/home/MicroTrekHomeSection';
 import { PrivateToursSection } from './components/home/PrivateToursSection';
-import { SocialBannerVisualizer } from './components/home/SocialBannerVisualizer';
-import { CommunitySection } from './components/home/CommunitySection';
-import { VideoGenerator } from './components/profile/VideoGenerator';
 import { format } from 'date-fns';
 
 interface Bike {
@@ -2312,7 +2301,7 @@ const ProfileView = ({
   const [avatar, setAvatar] = useState(user?.avatar || '');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
-  const [activeTab, setActiveTab] = useState<'profile' | 'bookings' | 'saved' | 'video'>('profile');
+  const [activeTab, setActiveTab] = useState<'profile' | 'bookings' | 'saved'>('profile');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -2387,15 +2376,6 @@ const ProfileView = ({
                   )}
                 >
                   <Heart size={18} /> Saved Guides
-                </button>
-                <button 
-                  onClick={() => setActiveTab('video')}
-                  className={cn(
-                    "w-full px-4 py-3 rounded-xl text-sm font-bold transition-all flex items-center gap-3",
-                    activeTab === 'video' ? "bg-emerald-500 text-white shadow-lg shadow-emerald-100" : "text-slate-600 hover:bg-slate-50"
-                  )}
-                >
-                  <Video size={18} /> Promo Video
                 </button>
               </div>
             </div>
@@ -2561,10 +2541,6 @@ const ProfileView = ({
                   </div>
                 )}
               </div>
-            )}
-
-            {activeTab === 'video' && (
-              <VideoGenerator />
             )}
           </div>
         </div>
@@ -3325,13 +3301,25 @@ const StorySection = () => (
   </section>
 );
 
-const AuthModal = ({ isOpen, onClose, onAuthSuccess }: { isOpen: boolean, onClose: () => void, onAuthSuccess: (user: User) => void }) => {
-  const [isLogin, setIsLogin] = useState(true);
+const AuthModal = ({ isOpen, onClose, onAuthSuccess, initialMode = 'login', initialType = 'traveler' }: { 
+  isOpen: boolean, 
+  onClose: () => void, 
+  onAuthSuccess: (user: User) => void,
+  initialMode?: 'login' | 'signup',
+  initialType?: 'traveler' | 'partner'
+}) => {
+  const [isLogin, setIsLogin] = useState(initialMode === 'login');
+  const [authType, setAuthType] = useState<'traveler' | 'partner'>(initialType);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    setIsLogin(initialMode === 'login');
+    setAuthType(initialType);
+  }, [initialMode, initialType, isOpen]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -3383,12 +3371,40 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }: { isOpen: boolean, onClos
           </button>
 
           <div className="text-center mb-8">
-            <div className="w-16 h-16 bg-emerald-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
-              <Lock size={32} className="text-emerald-500" />
+            <div className="flex justify-center gap-2 mb-8 p-1 bg-slate-100 rounded-2xl">
+              <button 
+                onClick={() => setAuthType('traveler')}
+                className={cn(
+                  "flex-1 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all",
+                  authType === 'traveler' ? "bg-white text-slate-900 shadow-sm" : "text-slate-400 hover:text-slate-600"
+                )}
+              >
+                Traveler
+              </button>
+              <button 
+                onClick={() => setAuthType('partner')}
+                className={cn(
+                  "flex-1 py-2 text-xs font-black uppercase tracking-widest rounded-xl transition-all",
+                  authType === 'partner' ? "bg-white text-slate-900 shadow-sm" : "text-slate-400 hover:text-slate-600"
+                )}
+              >
+                Partner
+              </button>
             </div>
-            <h2 className="text-2xl font-bold text-slate-900 font-display">{isLogin ? 'Welcome Back' : 'Create Account'}</h2>
+            <div className="w-16 h-16 bg-sky-50 rounded-2xl flex items-center justify-center mx-auto mb-4">
+              {authType === 'traveler' ? (
+                <UserIcon size={32} className="text-sky-500" />
+              ) : (
+                <ShieldCheck size={32} className="text-emerald-500" />
+              )}
+            </div>
+            <h2 className="text-2xl font-bold text-slate-900 font-display">
+              {isLogin ? (authType === 'traveler' ? 'Explore Again' : 'Partner Login') : (authType === 'traveler' ? 'Join the Journey' : 'Become a Partner')}
+            </h2>
             <p className="text-slate-500 text-sm mt-2">
-              {isLogin ? 'Log in to manage your bookings and profile' : 'Join GHOOMERS to start your adventure'}
+              {isLogin 
+                ? (authType === 'traveler' ? 'Log in to manage your bookings and profile' : 'Access your dashboard and manage inquiries') 
+                : (authType === 'traveler' ? 'Connect with verified experts in Northern Pakistan' : 'Grow your business with GHoomers platform')}
             </p>
           </div>
 
@@ -3438,9 +3454,12 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }: { isOpen: boolean, onClos
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full py-4 bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl font-bold shadow-lg shadow-emerald-100 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+              className={cn(
+                "w-full py-4 text-white rounded-xl font-bold shadow-lg transition-all flex items-center justify-center gap-2 disabled:opacity-50",
+                authType === 'traveler' ? "bg-sky-500 hover:bg-sky-600 shadow-sky-100" : "bg-emerald-500 hover:bg-emerald-600 shadow-emerald-100"
+              )}
             >
-              {isLoading ? 'Processing...' : (isLogin ? 'Log In' : 'Sign Up')}
+              {isLoading ? 'Processing...' : (isLogin ? 'Log In' : (authType === 'traveler' ? 'Create Traveler Account' : 'Sign Up as Partner'))}
               {!isLoading && <ArrowRight size={18} />}
             </button>
           </form>
@@ -3450,7 +3469,10 @@ const AuthModal = ({ isOpen, onClose, onAuthSuccess }: { isOpen: boolean, onClos
               {isLogin ? "Don't have an account?" : "Already have an account?"}
               <button
                 onClick={() => setIsLogin(!isLogin)}
-                className="ml-2 text-emerald-600 font-bold hover:underline"
+                className={cn(
+                  "ml-2 font-bold hover:underline",
+                  authType === 'traveler' ? "text-sky-600" : "text-emerald-600"
+                )}
               >
                 {isLogin ? 'Sign Up' : 'Log In'}
               </button>
@@ -4011,7 +4033,7 @@ export default function App() {
     refreshBookings
   } = useAppContext();
 
-  const [view, setView] = useState<'home' | 'dashboard' | 'guide' | 'destination' | 'profile' | 'find-guides' | 'experiences' | 'experience-detail' | 'moto-trek' | 'micro-trek' | 'explore'>('home');
+  const [view, setView] = useState<'home' | 'dashboard' | 'guide' | 'destination' | 'profile' | 'find-guides' | 'experiences' | 'experience-detail' | 'moto-trek' | 'micro-trek' | 'explore' | 'destinations' | 'blog' | 'contact' | 'water-adventures' | 'shore-excursions' | 'about' | 'legal' | 'help' | 'how-it-works' | 'agency-signup'>('home');
   const [selectedExperience, setSelectedExperience] = useState<LocalExperience | null>(null);
   const [isFavoritesLoading, setIsFavoritesLoading] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
@@ -4263,7 +4285,15 @@ export default function App() {
         onDashboardClick={() => setView('dashboard')} 
         onBecomeGuide={() => setIsRegisteringGuide(true)} 
         onLogoClick={() => setView('home')}
-        onNavClick={(v) => setView(v as any)}
+        onNavClick={(v) => {
+          if (v.startsWith('explore:')) {
+            const district = v.split(':')[1];
+            setSelectedExploreDistrict(district);
+            setView('explore');
+          } else {
+            setView(v as any);
+          }
+        }}
         onDestinationSelect={(dest) => {
           setSelectedDestination(dest);
         }}
@@ -4276,6 +4306,15 @@ export default function App() {
         onExploreClick={() => setView('explore')}
         onMotoTrekClick={() => setView('moto-trek')}
         onMicroTrekClick={() => setView('micro-trek')}
+        onBlogClick={() => setView('blog')}
+        onContactClick={() => setView('contact')}
+        onWaterAdventuresClick={() => setView('water-adventures')}
+        onDestinationsClick={() => setView('destinations')}
+        onShoreExcursionsClick={() => setView('shore-excursions')}
+        onAboutClick={() => setView('about')}
+        onHowItWorksClick={() => setView('how-it-works')}
+        onLegalClick={() => setView('legal')}
+        onHelpClick={() => setView('help')}
         destinations={destinations}
         isLoading={isDestinationsLoading}
       />
@@ -4301,7 +4340,124 @@ export default function App() {
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
             className="min-h-screen overflow-hidden"
           >
-            <ExplorePage onBack={() => setView('home')} />
+            <ExplorePage 
+              onBack={() => setView('home')} 
+              initialDistrict={selectedExploreDistrict}
+            />
+          </motion.div>
+        ) : view === 'agency-signup' ? (
+          <motion.div
+            key="agency-signup"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <AgencySignupPage onBack={() => setView('home')} />
+          </motion.div>
+        ) : view === 'destinations' ? (
+          <motion.div
+            key="destinations"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <DestinationsPage onSelect={(dest) => {
+              setSelectedDestination(dest);
+               // If a destination is selected, we might want to stay on the page 
+               // but the modal will pop up.
+            }} />
+          </motion.div>
+        ) : view === 'blog' ? (
+          <motion.div
+            key="blog"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <BlogPage />
+          </motion.div>
+        ) : view === 'contact' ? (
+          <motion.div
+            key="contact"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <ContactPage />
+          </motion.div>
+        ) : view === 'water-adventures' ? (
+          <motion.div
+            key="water-adventures"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <WaterAdventuresPage />
+          </motion.div>
+        ) : view === 'shore-excursions' ? (
+          <motion.div
+            key="shore-excursions"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <ShoreExcursionsPage />
+          </motion.div>
+        ) : view === 'about' ? (
+          <motion.div
+            key="about"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <AboutPage />
+          </motion.div>
+        ) : view === 'how-it-works' ? (
+          <motion.div
+            key="how-it-works"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <HowItWorksPage />
+          </motion.div>
+        ) : view === 'legal' ? (
+          <motion.div
+            key="legal"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <LegalPage />
+          </motion.div>
+        ) : view === 'help' ? (
+          <motion.div
+            key="help"
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
+          >
+            <HelpCenterPage />
           </motion.div>
         ) : view === 'dashboard' ? (
           <motion.div
@@ -4531,61 +4687,32 @@ export default function App() {
             />
           </motion.div>
         ) : (
-          <motion.main
+          <motion.div
             key="home"
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+            className="min-h-screen"
           >
-            <Hero 
-              onBecomeGuide={() => setIsRegisteringGuide(true)} 
-              onDestinationSelect={(dest) => setSelectedDestination(dest)}
-              onNavClick={scrollToSection}
+            <HomePage 
+              onSearch={(query) => {
+                setGuideSearchQuery(query);
+                setView('find-guides');
+              }}
               onExploreClick={() => setView('explore')}
-            />
-            <MarketplaceBadges 
-              onBadgeClick={(id) => {
-                if (id === 'guides') setView('find-guides');
-                else if (id === 'expeditions') setView('experiences');
-                else if (id === 'moto') setView('moto-trek');
-                else if (id === 'village') setView('experiences');
-              }} 
-            />
-            <TrustSection />
-            
-            <ExploreDistrictSection />
-            
-            <MeetOurGuides 
-              onSelect={(g) => {
-                setSelectedGuide(g);
-                setView('guide');
-              }} 
-              guides={guides} 
-              isLoading={isGuidesLoading} 
-              onNavClick={scrollToSection} 
-            />
-            
-            <PrivateToursSection 
-              onViewAll={() => setView('experiences')} 
-              onSelect={(exp) => {
-                setSelectedExperience(exp);
-                setView('experience-detail');
+              onExperiencesClick={() => setView('experiences')}
+              onFindGuidesClick={() => setView('find-guides')}
+              onBecomeGuide={() => setIsRegisteringGuide(true)}
+              onConciergeClick={() => {
+                // Scroll to concierge or action
               }}
             />
-
-            <TravelStyleSection />
-            <HowItWorks />
-            <SocialBannerVisualizer />
-            <MotoTrekHomeSection onExplore={() => setView('moto-trek')} />
-            <SeasonalInspiration />
-            <TestimonialCarousel testimonials={TESTIMONIALS} />
-            <CommunitySection />
-          </motion.main>
+          </motion.div>
         )}
       </AnimatePresence>
 
-      <Footer />
+      <Footer onNavClick={(v) => setView(v)} />
 
       <DestinationModal 
         destination={selectedDestination}

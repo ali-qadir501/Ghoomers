@@ -53,13 +53,12 @@ export const Logo: React.FC<LogoProps> = ({
 
       {showText && (
         <div className={cn(
-          "font-sans font-bold tracking-tight leading-none",
+          "font-sans font-black tracking-tighter leading-none",
           isStacked ? "mt-2" : ""
         )}
-        style={{ fontSize: size * 0.5 }}
+        style={{ fontSize: size * 0.6 }}
         >
-          <span style={{ color: textPrimary }}>Ghoomers</span>
-          <span style={{ color: iconColor }}>.pk</span>
+          <span style={{ color: textPrimary }}>GHoomers</span>
         </div>
       )}
     </div>
