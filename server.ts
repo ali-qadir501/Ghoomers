@@ -302,9 +302,9 @@ if (routesCount.count === 0) {
 const gearCount = db.prepare("SELECT COUNT(*) as count FROM gear").get() as any;
 if (gearCount.count === 0) {
   const seedGear = [
-    { name: "Full Face Helmet", type: "Helmet", price: 500, img: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=600" },
-    { name: "Riding Jacket", type: "Jacket", price: 800, img: "https://images.unsplash.com/photo-1591637333184-19aa84b3e01f?auto=format&fit=crop&q=80&w=600" },
-    { name: "Knee Guards", type: "Protection", price: 300, img: "https://images.unsplash.com/photo-1599819811279-d5ad9cccf838?auto=format&fit=crop&q=80&w=600" }
+    { name: "Full Face Helmet", type: "Helmet", price: 500, img: "https://picsum.photos/seed/gear1/400/300" },
+    { name: "Riding Jacket", type: "Jacket", price: 800, img: "https://picsum.photos/seed/gear2/400/300" },
+    { name: "Knee Guards", type: "Protection", price: 300, img: "https://picsum.photos/seed/gear3/400/300" }
   ];
   const stmt = db.prepare("INSERT INTO gear (name, type, price_per_day, image) VALUES (?, ?, ?, ?)");
   seedGear.forEach(g => stmt.run(g.name, g.type, g.price, g.img));
@@ -321,7 +321,7 @@ if (microTreksCount.count === 0) {
       elev: "50m", 
       price: 4500, 
       village: "Altit", 
-      img: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&q=80&w=600",
+      img: "https://picsum.photos/seed/trek1/400/300",
       map: JSON.stringify({ points: [[36.314, 74.671], [36.315, 74.672], [36.316, 74.673]] }),
       addon: 1500
     },
@@ -333,7 +333,7 @@ if (microTreksCount.count === 0) {
       elev: "400m", 
       price: 6500, 
       village: "Gulmit", 
-      img: "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=600",
+      img: "https://picsum.photos/seed/trek2/400/300",
       map: JSON.stringify({ points: [[36.414, 74.871], [36.415, 74.872], [36.416, 74.873]] }),
       addon: 2000
     },
@@ -345,7 +345,7 @@ if (microTreksCount.count === 0) {
       elev: "30m", 
       price: 5000, 
       village: "Passu", 
-      img: "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&q=80&w=600",
+      img: "https://picsum.photos/seed/trek3/400/300",
       map: JSON.stringify({ points: [[36.474, 74.891], [36.475, 74.892], [36.476, 74.893]] }),
       addon: 1200
     }

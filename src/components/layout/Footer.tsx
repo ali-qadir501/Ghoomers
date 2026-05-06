@@ -1,23 +1,17 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Logo } from '../common/Logo';
 import { Map, Facebook, Twitter, Instagram, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
-interface FooterProps {
-  onNavClick: (view: any) => void;
-}
-
-export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
+export const Footer: React.FC = () => {
   return (
     <footer className="bg-slate-900 text-white pt-24 pb-12 border-t border-white/5">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
         {/* Brand */}
         <div>
-          <div 
-            onClick={() => onNavClick('home')}
-            className="mb-8 block group cursor-pointer"
-          >
+          <Link to="/" className="mb-8 block group">
             <Logo size={32} textColor="light" />
-          </div>
+          </Link>
           <p className="text-slate-500 text-xs leading-relaxed mb-8 font-medium">
             Pakistan's premier gateway to the Karakoram for international travelers. We bridge the gap between world-class expectations and raw local reality.
           </p>
@@ -38,20 +32,11 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
         <div>
           <h4 className="text-[10px] font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Quick Links</h4>
           <ul className="flex flex-col gap-5">
-            {[
-              { label: 'Experiences', view: 'experiences' },
-              { label: 'Shore Excursions', view: 'shore-excursions' },
-              { label: 'Find Guides', view: 'find-guides' },
-              { label: 'Explore Map', view: 'explore' },
-              { label: 'Adventure Blog', view: 'blog' },
-            ].map((link) => (
-              <li key={link.label}>
-                <button 
-                  onClick={() => onNavClick(link.view)}
-                  className="text-left text-slate-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest"
-                >
-                  {link.label}
-                </button>
+            {['Find Guides', 'Adventures', 'How It Works', 'GigaByte Concierge', 'Become a Guide'].map((link) => (
+              <li key={link}>
+                <Link to="#" className="text-slate-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
+                  {link}
+                </Link>
               </li>
             ))}
           </ul>
@@ -59,22 +44,13 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
 
         {/* Support */}
         <div>
-          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Company</h4>
+          <h4 className="text-[10px] font-black uppercase tracking-[0.2em] mb-10 text-slate-500">Support</h4>
           <ul className="flex flex-col gap-5">
-            {[
-              { label: 'About Us', view: 'about' },
-              { label: 'How It Works', view: 'how-it-works' },
-              { label: 'Help Center', view: 'help' },
-              { label: 'Privacy Policy', view: 'legal' },
-              { label: 'Contact Us', view: 'contact' },
-            ].map((link) => (
-              <li key={link.label}>
-                <button 
-                  onClick={() => onNavClick(link.view)}
-                  className="text-left text-slate-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest"
-                >
-                  {link.label}
-                </button>
+            {['Help Center', 'Safety Guidelines', 'Terms of Service', 'Privacy Policy', 'Cancellation Policy'].map((link) => (
+              <li key={link}>
+                <Link to="#" className="text-slate-400 hover:text-white transition-colors text-xs font-bold uppercase tracking-widest">
+                  {link}
+                </Link>
               </li>
             ))}
           </ul>
@@ -108,7 +84,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
               </div>
               <div>
                 <p className="text-xs text-slate-500 font-bold uppercase tracking-widest mb-1">Office</p>
-                <p className="text-sm font-medium">Gilgit City, Pakistan</p>
+                <p className="text-sm font-medium">Sector G-11, Islamabad, Pakistan</p>
               </div>
             </li>
           </ul>
@@ -120,8 +96,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavClick }) => {
           © {new Date().getFullYear()} GHOOMERS. All rights reserved.
         </p>
         <div className="flex gap-8">
-          <button onClick={() => onNavClick('legal')} className="text-slate-500 hover:text-white transition-colors text-xs font-medium">Privacy Policy</button>
-          <button onClick={() => onNavClick('legal')} className="text-slate-500 hover:text-white transition-colors text-xs font-medium">Terms of Service</button>
+          <Link to="#" className="text-slate-500 hover:text-white transition-colors text-xs font-medium">Privacy Policy</Link>
+          <Link to="#" className="text-slate-500 hover:text-white transition-colors text-xs font-medium">Terms of Service</Link>
         </div>
       </div>
     </footer>

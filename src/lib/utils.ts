@@ -89,7 +89,6 @@ export interface Destination {
   groupSize: 'Solo' | 'Small Group' | 'Large Group';
   duration?: string;
   popularity: number;
-  rating: number;
   coordinates?: { lat: number; lng: number };
   gallery?: string[];
   popularActivities?: string[];
@@ -229,7 +228,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 98,
-    rating: 4.9,
     coordinates: { lat: 35.8818, lng: 76.5133 },
     gallery: [
       "https://images.unsplash.com/photo-1544198365-f5d60b6d8190?auto=format&fit=crop&q=80&w=1200",
@@ -252,7 +250,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Spring',
     groupSize: 'Large Group',
     popularity: 95,
-    rating: 4.8,
     coordinates: { lat: 36.3167, lng: 74.6500 },
     gallery: [
       "https://images.unsplash.com/photo-1549490349-8643362247b5?auto=format&fit=crop&q=80&w=1200",
@@ -275,7 +272,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 92,
-    rating: 4.7,
     coordinates: { lat: 35.3833, lng: 74.5833 },
     gallery: [
       "https://images.unsplash.com/photo-1587570441551-789069d2d2a4?auto=format&fit=crop&q=80&w=1200",
@@ -298,7 +294,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Solo',
     popularity: 89,
-    rating: 4.6,
     coordinates: { lat: 35.2981, lng: 75.6333 },
     gallery: [
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80",
@@ -321,7 +316,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 85,
-    rating: 4.5,
     coordinates: { lat: 36.1833, lng: 73.4500 },
     gallery: [
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80",
@@ -344,7 +338,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Small Group',
     popularity: 87,
-    rating: 4.8,
     coordinates: { lat: 35.1444, lng: 76.3333 },
     gallery: [
       "https://images.unsplash.com/photo-1593693399766-6f7ad6eff5c0?auto=format&fit=crop&w=800&q=80",
@@ -367,7 +360,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Summer',
     groupSize: 'Small Group',
     popularity: 82,
-    rating: 4.9,
     coordinates: { lat: 36.0833, lng: 72.5167 },
     gallery: [
       "https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=800&q=80",
@@ -390,7 +382,6 @@ export const DESTINATIONS: Destination[] = [
     bestSeason: 'Autumn',
     groupSize: 'Small Group',
     popularity: 94,
-    rating: 4.9,
     coordinates: { lat: 35.6833, lng: 71.7167 },
     gallery: [
       "https://images.unsplash.com/photo-1524230572899-a752b3835840?auto=format&fit=crop&w=800&q=80",

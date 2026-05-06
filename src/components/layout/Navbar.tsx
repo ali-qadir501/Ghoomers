@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { 
   Menu, X, Search, Globe, ChevronDown, User, Heart, 
   LayoutDashboard, LogOut, Mountain, Compass, MapPin, 
-  Bike, Footprints, Info, ShieldCheck, Waves, BookOpen, Mail, Ship, HelpCircle, ArrowRight
+  Bike, Footprints, Info, ShieldCheck
 } from 'lucide-react';
 import { type Destination } from '../../lib/utils';
 import { Logo } from '../common/Logo';
@@ -24,15 +24,6 @@ interface NavbarProps {
   onExploreClick: () => void;
   onMotoTrekClick: () => void;
   onMicroTrekClick: () => void;
-  onBlogClick: () => void;
-  onContactClick: () => void;
-  onWaterAdventuresClick: () => void;
-  onDestinationsClick: () => void;
-  onShoreExcursionsClick: () => void;
-  onAboutClick: () => void;
-  onHowItWorksClick: () => void;
-  onLegalClick: () => void;
-  onHelpClick: () => void;
   destinations: Destination[];
   isLoading: boolean;
 }
@@ -52,23 +43,12 @@ export const Navbar: React.FC<NavbarProps> = ({
   onExploreClick,
   onMotoTrekClick,
   onMicroTrekClick,
-  onBlogClick,
-  onContactClick,
-  onWaterAdventuresClick,
-  onDestinationsClick,
-  onShoreExcursionsClick,
-  onAboutClick,
-  onHowItWorksClick,
-  onLegalClick,
-  onHelpClick,
   destinations,
   isLoading
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isExploreOpen, setIsExploreOpen] = useState(false);
-  const [isToursOpen, setIsToursOpen] = useState(false);
-  const [isPartnersOpen, setIsPartnersOpen] = useState(false);
+  const [isDestinationsOpen, setIsDestinationsOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
 
   useEffect(() => {
@@ -80,11 +60,10 @@ export const Navbar: React.FC<NavbarProps> = ({
   }, []);
 
   const navItems = [
-    { label: 'Tours', action: onExperiencesClick, icon: <Compass size={18} /> },
-    { label: 'Excursions', action: onShoreExcursionsClick, icon: <Ship size={18} /> },
-    { label: 'Guides', action: onFindGuidesClick, icon: <User size={18} /> },
+    { label: 'Experiences', action: onExperiencesClick, icon: <Compass size={18} /> },
+    { label: 'Find Guides', action: onFindGuidesClick, icon: <User size={18} /> },
+    { label: 'Moto Trek', action: onMotoTrekClick, icon: <Bike size={18} /> },
     { label: 'Explore', action: onExploreClick, icon: <Mountain size={18} /> },
-    { label: 'Help', action: onHelpClick, icon: <HelpCircle size={18} /> },
   ];
 
   return (
@@ -115,12 +94,10 @@ export const Navbar: React.FC<NavbarProps> = ({
 
             {/* Desktop Nav */}
             <div className="hidden lg:flex items-center gap-0.5">
-              {/* Explore Dropdown */}
-              <div className="relative">
+              {navItems.map((item) => (
                 <button
-                  onMouseEnter={() => setIsExploreOpen(true)}
-                  onMouseLeave={() => setIsExploreOpen(false)}
-                  onClick={onExploreClick}
+                  key={item.label}
+                  onClick={item.action}
                   className={cn(
                     "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
                     isScrolled 
@@ -128,201 +105,65 @@ export const Navbar: React.FC<NavbarProps> = ({
                       : "text-white/70 hover:text-white hover:bg-white/10"
                   )}
                 >
-                  Explore <ChevronDown size={12} className={cn("transition-transform duration-500", isExploreOpen && "rotate-180")} />
+                  {item.label}
+                </button>
+              ))}
+              
+              <div className="relative">
+                <button
+                  onMouseEnter={() => setIsDestinationsOpen(true)}
+                  onMouseLeave={() => setIsDestinationsOpen(false)}
+                  className={cn(
+                    "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
+                    isScrolled 
+                      ? "text-slate-500 hover:text-slate-900 hover:bg-slate-50" 
+                      : "text-white/70 hover:text-white hover:bg-white/10"
+                  )}
+                >
+                  Destinations <ChevronDown size={12} className={cn("transition-transform duration-500", isDestinationsOpen && "rotate-180")} />
                 </button>
                 
                 <AnimatePresence>
-                  {isExploreOpen && (
+                  {isDestinationsOpen && (
                     <motion.div
                       initial={{ opacity: 0, y: 10, scale: 0.95 }}
                       animate={{ opacity: 1, y: 0, scale: 1 }}
                       exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      onMouseEnter={() => setIsExploreOpen(true)}
-                      onMouseLeave={() => setIsExploreOpen(false)}
+                      onMouseEnter={() => setIsDestinationsOpen(true)}
+                      onMouseLeave={() => setIsDestinationsOpen(false)}
                       className="absolute top-full left-0 mt-2 w-80 bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 border border-slate-100 overflow-hidden"
                     >
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-2">Districts (Northern Pakistan)</div>
-                      <div className="grid grid-cols-1 gap-1">
-                        {[
-                          { id: 'Hunza', label: 'North (Hunza & Ghizer)', info: 'Peaks & Lakes' },
-                          { id: 'Astore', label: 'South (Astore & Diamer)', info: 'Meadows & Nanga Parbat' },
-                          { id: 'Skardu', label: 'East (Skardu & Baltistan)', info: 'High Altitudes & Cold Deserts' },
-                          { id: 'Chitral (Upper & Lower)', label: 'West (Chitral & Hindukush)', info: 'Kalash Culture' },
-                          { id: 'Gilgit', label: 'Central (Gilgit & Nagar)', info: 'Capital & Silk Road' },
-                        ].map((dist) => (
-                          <button
-                            key={dist.id}
-                            onClick={() => {
-                              onNavClick(`explore:${dist.id}`);
-                              setIsExploreOpen(false);
-                            }}
-                            className="text-left p-3 rounded-2xl hover:bg-emerald-50 group transition-all flex items-center justify-between"
-                          >
-                            <div className="flex items-center gap-3">
-                              <div className="w-8 h-8 rounded-xl bg-slate-50 group-hover:bg-white flex items-center justify-center text-slate-400 group-hover:text-emerald-500 transition-colors">
-                                <MapPin size={16} />
-                              </div>
-                              <div>
-                                <div className="text-xs font-black text-slate-700 group-hover:text-slate-900">{dist.label}</div>
-                                <div className="text-[9px] font-bold text-slate-400 group-hover:text-emerald-600/70">{dist.info}</div>
-                              </div>
-                            </div>
-                            <ArrowRight size={14} className="text-slate-200 group-hover:text-emerald-500 transition-all opacity-0 group-hover:opacity-100 translate-x-[-4px] group-hover:translate-x-0" />
-                          </button>
-                        ))}
+                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Popular Valleys</div>
+                      <div className="grid grid-cols-2 gap-3">
+                        {isLoading ? (
+                          Array.from({ length: 4 }).map((_, i) => (
+                            <div key={i} className="h-10 bg-slate-50 animate-pulse rounded-xl" />
+                          ))
+                        ) : (
+                          destinations.slice(0, 6).map((dest) => (
+                            <button
+                              key={dest.id}
+                              onClick={() => {
+                                onDestinationSelect(dest);
+                                setIsDestinationsOpen(false);
+                              }}
+                              className="text-left py-2 px-3 rounded-xl hover:bg-sky-50 text-sm font-bold text-slate-700 hover:text-sky-600 transition-all flex items-center gap-2"
+                            >
+                              <MapPin size={12} className="text-sky-400" />
+                              {dest.name}
+                            </button>
+                          ))
+                        )}
                       </div>
-                      <div className="mt-4 pt-4 border-t border-slate-50 text-center">
-                        <button onClick={onExploreClick} className="text-[10px] font-black text-sky-500 uppercase tracking-widest hover:text-sky-600 transition-colors">
-                          Interactive Map View
+                      <div className="mt-6 pt-4 border-t border-slate-50">
+                        <button onClick={onExploreClick} className="w-full text-center py-3 bg-slate-900 text-white rounded-xl text-xs font-black uppercase tracking-widest hover:bg-sky-600 transition-all">
+                          View All Destinations
                         </button>
                       </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
-
-              {/* Tours Dropdown */}
-              <div className="relative">
-                <button
-                  onMouseEnter={() => setIsToursOpen(true)}
-                  onMouseLeave={() => setIsToursOpen(false)}
-                  onClick={onExperiencesClick}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
-                    isScrolled 
-                      ? "text-slate-500 hover:text-slate-900 hover:bg-slate-50" 
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  )}
-                >
-                  Tours <ChevronDown size={12} className={cn("transition-transform duration-500", isToursOpen && "rotate-180")} />
-                </button>
-                
-                <AnimatePresence>
-                  {isToursOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      onMouseEnter={() => setIsToursOpen(true)}
-                      onMouseLeave={() => setIsToursOpen(false)}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 border border-slate-100 overflow-hidden"
-                    >
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-2">Things to Do</div>
-                      <div className="space-y-1">
-                        {[
-                          { label: 'Experiences', action: onExperiencesClick, icon: <Compass />, desc: 'Local student-led acts' },
-                          { label: 'Shore Excursions', action: onShoreExcursionsClick, icon: <Ship />, desc: 'River & Lake trips' },
-                          { label: 'Water Adventures', action: onWaterAdventuresClick, icon: <Waves />, desc: 'Rafting & Fishing' },
-                          { label: 'Moto Treks', action: onMotoTrekClick, icon: <Bike />, desc: 'Karakoram expeditions' },
-                        ].map((tour) => (
-                          <button
-                            key={tour.label}
-                            onClick={() => {
-                              tour.action();
-                              setIsToursOpen(false);
-                            }}
-                            className="w-full text-left p-3 rounded-2xl hover:bg-sky-50 group transition-all flex items-center gap-3"
-                          >
-                            <div className="p-2 bg-slate-50 group-hover:bg-white rounded-xl text-slate-400 group-hover:text-sky-500 transition-all">
-                              {React.cloneElement(tour.icon as React.ReactElement, { size: 18 })}
-                            </div>
-                            <div>
-                              <div className="text-xs font-black text-slate-700 group-hover:text-slate-900">{tour.label}</div>
-                              <div className="text-[9px] font-bold text-slate-400 group-hover:text-slate-500">{tour.desc}</div>
-                            </div>
-                          </button>
-                        ))}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <button
-                onClick={onFindGuidesClick}
-                className={cn(
-                  "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
-                  isScrolled 
-                    ? "text-slate-500 hover:text-slate-900 hover:bg-slate-50" 
-                    : "text-white/70 hover:text-white hover:bg-white/10"
-                )}
-              >
-                Guides
-              </button>
-
-              {/* Partners Dropdown */}
-              <div className="relative">
-                <button
-                  onMouseEnter={() => setIsPartnersOpen(true)}
-                  onMouseLeave={() => setIsPartnersOpen(false)}
-                  className={cn(
-                    "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
-                    isScrolled 
-                      ? "text-slate-500 hover:text-slate-900 hover:bg-slate-50" 
-                      : "text-white/70 hover:text-white hover:bg-white/10"
-                  )}
-                >
-                  Join Us <ChevronDown size={12} className={cn("transition-transform duration-500", isPartnersOpen && "rotate-180")} />
-                </button>
-                
-                <AnimatePresence>
-                  {isPartnersOpen && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-                      onMouseEnter={() => setIsPartnersOpen(true)}
-                      onMouseLeave={() => setIsPartnersOpen(false)}
-                      className="absolute top-full left-0 mt-2 w-72 bg-white rounded-3xl shadow-2xl shadow-slate-200 p-6 border border-slate-100 overflow-hidden"
-                    >
-                      <div className="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4 px-2">Partner with GHOOMERS</div>
-                      <div className="space-y-1">
-                        <button
-                          onClick={() => { onLoginClick(); setIsPartnersOpen(false); }}
-                          className="w-full text-left p-4 rounded-2xl bg-sky-50 hover:bg-sky-100 group transition-all mb-2"
-                        >
-                          <div className="text-xs font-black text-sky-700">For Travelers</div>
-                          <div className="text-[9px] font-bold text-sky-600/70">Expert-led private trips</div>
-                        </button>
-                        
-                        <button
-                          onClick={() => { onBecomeGuide(); setIsPartnersOpen(false); }}
-                          className="w-full text-left p-4 rounded-2xl hover:bg-slate-50 group transition-all"
-                        >
-                          <div className="flex items-center gap-2 mb-1">
-                            <User size={14} className="text-slate-400 group-hover:text-slate-900" />
-                            <div className="text-xs font-black text-slate-700 group-hover:text-slate-900">As Tour Guide</div>
-                          </div>
-                          <div className="text-[9px] font-bold text-slate-400">Share your local expertise</div>
-                        </button>
-
-                        <button
-                          onClick={() => { onNavClick('agency-signup'); setIsPartnersOpen(false); }}
-                          className="w-full text-left p-4 rounded-2xl hover:bg-slate-50 group transition-all"
-                        >
-                          <div className="flex items-center gap-2 mb-1">
-                            <ShieldCheck size={14} className="text-slate-400 group-hover:text-emerald-600" />
-                            <div className="text-xs font-black text-slate-700 group-hover:text-slate-900">As Travel Agency</div>
-                          </div>
-                          <div className="text-[9px] font-bold text-slate-400 font-medium">B2B ToursByLocal Model</div>
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <button
-                onClick={onHelpClick}
-                className={cn(
-                  "px-4 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] transition-all flex items-center gap-2",
-                  isScrolled 
-                    ? "text-slate-500 hover:text-slate-900 hover:bg-slate-50" 
-                    : "text-white/70 hover:text-white hover:bg-white/10"
-                )}
-              >
-                Help
-              </button>
             </div>
           </div>
 
